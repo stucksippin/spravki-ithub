@@ -1,25 +1,23 @@
-import { PrismaClient } from "@prisma/client"
+import prisma from "@/app/src/libs/prisma"
 
-export async function PUT(request) {
-    const body = await request.formData()
-    const data = Object.fromEntries(body)
-    console.log(data)
-
-    const prisma = new PrismaClient()
-    const resp = await prisma.tours.create({
+export async function POST(request) {
+    const data = await request.json()
+    const currentData = new Date
+    const resp = await prisma.reference.create({
         data: {
-            name: data.name,
-            data: data.data,
-            city: data.city,
-            type: data.type,
-            price: parseInt(data.price),
-            nutrition: !!data.nutrition,
-            guide: !!data.guide,
+            initials: data.initials,
+            group: data.group,
+            typeOfReference: data.typeOfReferences,
+            dataSent: currentData
         }
     })
-
-    return Response.json({
-        result: "OK"
-    })
-
+    if (resp) {
+        return Response.json({
+            result: "OK"
+        })
+    } else {
+        return Response.json({
+            result: "fail"
+        })
+    }
 }

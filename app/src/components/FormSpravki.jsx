@@ -1,33 +1,47 @@
-import React from 'react'
+'use client'
+import { useForm } from "react-hook-form";
 
-export default function FormSpravki() {
-    async function handleSubmit(e) {
-        e.preventDefault()
 
-        const formData = new FormData(e.target)
+export default function CallbackForm() {
 
-        const resp = await fetch('src/api/actions/create', {
-            method: 'PUT',
-            body: formData
-        })
+    const { register, handleSubmit } = useForm();
 
-        const result = await resp.json()
+    //bot
 
+    const onSubmit = async (data) => {
+        try {
+            await fetch("/src/api/actions/create", {
+                method: 'POST',
+                body: JSON.stringify(data)
+
+
+            });
+            console.log('Сообщение отправлено')
+        } catch (error) {
+            console.error("Ошибка при отправке данных в телеграмме", error)
+        }
     }
+
+
     return (
-        <form className='flex flex-col mt-10 items-center'>
-            <input className='border w-1/3 mb-4 p-3 rounded-lg' type="text" placeholder='ФИО' />
-            <select className='border w-1/3 mb-4 p-3 rounded-lg' name="Группа" id="" >
-                <option value="">исп1</option>
-                <option value="">исп2</option>
-                <option value="">исп3</option>
+        <form className="flex flex-col container mx-auto w-[50%] mt-20" onSubmit={handleSubmit(onSubmit)}>
+            <label>ФИО</label>
+            <input className="border mb-5 py-3 px-5 rounded-xl" placeholder="Enter initials" {...register("initials", { required: true, maxLength: 50 })} />
+
+            <label>Группа</label>
+            <select className="border mb-5 py-3 px-5 rounded-xl" {...register("group")}>
+                <option value="ИСП1">ИСП1</option>
+                <option value="ИСП2">ИСП2</option>
+                <option value="ИСП3">ИСП3</option>
             </select>
-            <select className='border w-1/3 mb-4 p-3 rounded-lg' name="Группа" id="" >
-                <option value="">Справка 1</option>
-                <option value="">Справка 2</option>
-                <option value="">Справка 3</option>
+
+            <label>Вид справки</label>
+            <select className="border mb-5 py-3 px-5 rounded-xl" {...register("typeOfReferences")}>
+                <option value="справка 1">Справка 1</option>
+                <option value="справка 2">справка 2</option>
+                <option value="справка 3">справка 3</option>
             </select>
-            <button className='border p-3 w-fit rounded-lg'> Заказать</button>
+            <input className="border p-2 hover:bg-orange-300 rounded-xl w-[50%] self-center mt-5" type="submit" />
         </form>
-    )
+    );
 }
