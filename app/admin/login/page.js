@@ -1,4 +1,4 @@
-import Form from '@/public/src/components/Form'
+import Form from '@/app/src/components/Form'
 import React from 'react'
 
 

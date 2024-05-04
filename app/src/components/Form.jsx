@@ -39,10 +39,7 @@ export default function Form() {
             {
                 error && <p className='text-red-400 mt-10'>Введены некорректные данные, проверьте правильность пароля или логина</p>
             }
-            <div className='flex mx-auto mt-5'>
-                <p className='text-slate-400'>Вы еще не зарегистрированы? </p>
-                <Link className='underline ml-3' href={'/Register'}>Зарегистрироваться</Link>
-            </div>
+
 
         </form>
     )

@@ -15,3 +15,12 @@ model user {
   email    String @unique
   password String
 }
+
+model reference {
+  id              Int      @id @default(autoincrement())
+  initials        String
+  group           String
+  typeOfReference String
+  dataSent        DateTime
+  status          Int      @default(1)
+}
