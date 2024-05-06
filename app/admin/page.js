@@ -1,6 +1,6 @@
 import React from 'react'
-import { Table } from "antd";
-import getReferences from '../src/libs/getReferences';
+// import { Table } from "antd";
+import getReferences from '../../libs/getReferences';
 
 
 

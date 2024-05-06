@@ -2,7 +2,7 @@
 import { useForm } from "react-hook-form";
 
 
-export default function CallbackForm() {
+export default function ReferencesForm() {
 
     const { register, handleSubmit } = useForm();
 
@@ -10,7 +10,7 @@ export default function CallbackForm() {
 
     const onSubmit = async (data) => {
         try {
-            await fetch("/src/api/actions/create", {
+            await fetch("/api/actions/create", {
                 method: 'POST',
                 body: JSON.stringify(data)
 
@@ -20,6 +20,8 @@ export default function CallbackForm() {
         } catch (error) {
             console.error("Ошибка при отправке данных в телеграмме", error)
         }
+
+
     }
 
 
@@ -37,9 +39,9 @@ export default function CallbackForm() {
 
             <label>Вид справки</label>
             <select className="border mb-5 py-3 px-5 rounded-xl" {...register("typeOfReferences")}>
-                <option value="справка 1">Справка 1</option>
-                <option value="справка 2">справка 2</option>
-                <option value="справка 3">справка 3</option>
+                <option value="справка 1">Документ о предыдущем образовании(скан)</option>
+                <option value="справка 2">Справка о стипендии</option>
+                <option value="справка 3">Справка об обучении</option>
             </select>
             <input className="border p-2 hover:bg-orange-300 rounded-xl w-[50%] self-center mt-5" type="submit" />
         </form>

@@ -1,8 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { getServerSession } from "next-auth";
-import { NextAuthOptions } from "@/config";
-import Header from "./src/components/ui/Header";
+
 
 
 
@@ -19,7 +17,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header />
         <main className="container mx-auto">{children}</main>
       </body>
     </html>

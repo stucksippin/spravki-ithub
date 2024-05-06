@@ -15,13 +15,12 @@ export const NextAuthOptions = {
         },
         async authorize(credentials) {
             const prisma = new PrismaClient()
-            const user = await prisma.users.findFirst({
+            const user = await prisma.user.findFirst({
                 where: {
                     email: credentials.email
                 }
             })
-            const correctPassword = await compare(credentials.password, user.password)
-
+            const correctPassword = credentials.password === user.password
 
             if (correctPassword) {
                 return {

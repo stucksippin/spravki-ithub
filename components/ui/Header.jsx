@@ -8,7 +8,8 @@ export default function Header() {
                 <ul className='flex justify-between border p-4 rounded-xl items-center'>
 
                     <Link href={'/'}>Справки IThub</Link>
-                    <Link href={'/'}>Заказать справку</Link>
+                    <Link href={'/reference'}>Заказать справку</Link>
+                    {/* <Link href={'/reference'}>Админ</Link> */}
                 </ul>
             </nav>
         </div>
