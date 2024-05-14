@@ -7,13 +7,10 @@ const { Option } = Select;
 
 export default function TableReferences({ references }) {
   const [dataSource, setDataSource] = useState(references);
-  console.log(references);
+
   const handleStatusChange = async (recordId, newStatus) => {
-    console.log({recordId});
-    console.log({newStatus});
-    console.log(dataSource);
+
     try {
-      // Обновление статуса справки на сервере
       const resp = await fetch("/api/actions/updateReference/", {
         method: 'PATCH',
         body: JSON.stringify({
@@ -22,7 +19,7 @@ export default function TableReferences({ references }) {
         })
       });
 
-      if(resp){
+      if (resp) {
         const editIndex = dataSource.map((el) => el.id).indexOf(recordId)
         let temp = [...dataSource]
         temp[editIndex].status = newStatus
@@ -35,11 +32,6 @@ export default function TableReferences({ references }) {
   };
 
   const columns = [
-    {
-      title: 'айди',
-      dataIndex: 'id',
-      key: 'id',
-    },
     {
       title: 'ФИО',
       dataIndex: 'initials',

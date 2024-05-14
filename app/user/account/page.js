@@ -2,6 +2,7 @@ import { NextAuthOptions } from '@/config'
 import { getServerSession } from 'next-auth'
 import prisma from '@/libs/prisma';
 import getReferencesById from '@/libs/getReferencesById';
+import { Button, message, Popconfirm } from 'antd';
 
 
 export default async function AccountPage() {
@@ -56,7 +57,8 @@ export default async function AccountPage() {
                                     <div className='w-[800px] flex flex-wrap'>
                                         {
                                             references.map((reference) => (
-                                                <div className='border flex flex-col mt-2 mr-5 p-3' key={reference.id}>
+                                                <div className='border flex flex-col mt-2 mr-5 p-3 relative' key={reference.id}>
+                                                    <button className='border border-red-500 text-red-500 w-fit rounded-[100%] px-2 bg-white absolute right-[-10px] top-[-10px]'>×</button>
                                                     <span className='font-semibold mb-3'>{reference.typeOfReference}</span>
                                                     <span>Статус: {statusChanger(reference.status)}</span>
                                                     <span>Заказчик: {reference.initials}</span>
