@@ -51,14 +51,18 @@ export default function TableReferences({ references }) {
       title: 'Дата запроса',
       dataIndex: 'dataSent',
       key: 'dataSent',
-      render: (date) => (<p>{date.toDateString()}</p>)
+      render: (date) => (<p>{
+        new Intl.DateTimeFormat('ru-RU', {
+          dateStyle: 'full',
+          timeZone: 'Europe/Moscow',
+        }).format(date)}</p>)
     },
     {
       title: 'Статус',
       dataIndex: 'status',
       key: 'status',
       render: (text, record) => (
-        <Select value={record.status} onChange={(value) => handleStatusChange(record.id, value)}>
+        <Select className='w-[150px]' value={record.status} onChange={(value) => handleStatusChange(record.id, value)}>
           <Option key='requested' value={1}>Запрошена!</Option>
           <Option key='inProgress' value={2}>В процессе</Option>
           <Option key='ready' value={3}>Готова!</Option>

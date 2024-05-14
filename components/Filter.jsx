@@ -30,7 +30,7 @@ export default function Filter({ references, dataSource, setDataSource }) {
     };
 
     return (
-        <Select className='mt-10' onChange={handleFilterChange} defaultValue="all">
+        <Select className='mt-10 w-[150px]' onChange={handleFilterChange} defaultValue="all">
             <Option key="all" value="all">Все</Option>
             <Option key='requested' value={1}>Запрошена!</Option>
             <Option key='inProgress' value={2}>В процессе</Option>
