@@ -11,10 +11,12 @@ datasource db {
 }
 
 model user {
-  id       Int    @id @default(autoincrement())
-  email    String @unique
-  password String
-  role     String @default("user")
+  id         Int         @id @default(autoincrement())
+  initials   String
+  email      String      @unique
+  password   String
+  role       String      @default("user")
+  references reference[]
 }
 
 model reference {
@@ -22,6 +24,9 @@ model reference {
   initials        String
   group           String
   typeOfReference String
-  dataSent        DateTime
+  dataSent        DateTime @default(now())
   status          Int      @default(1)
+
+  user   user @relation(fields: [userId], references: [id])
+  userId Int
 }

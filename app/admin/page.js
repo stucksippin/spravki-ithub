@@ -1,17 +1,12 @@
 import React from 'react'
-// import { Table } from "antd";
 import getReferences from '../../libs/getReferences';
-
-
+import TableReferences from '@/components/TableReference';
 
 export default async function AdminPage() {
-
-    const dataSource = await getReferences()
-
+const references = await getReferences()
     return (
         <div className=''>
-
-
+            <TableReferences references={references} />
         </div>
     )
 }

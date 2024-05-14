@@ -31,15 +31,13 @@ export default function Form() {
 
 
     return (
-        <form className='border p-5 w-1/2 flex flex-col mx-auto mt-[30px]' onSubmit={submitHandler}>
+        <form className='border p-5 w-1/3 flex flex-col mx-auto' onSubmit={submitHandler}>
             <input className='border p-3 my-3 rounded-md' required type="text" name='email' placeholder="Введите email" />
             <input className='border p-3 my-3 rounded-md' required type="password" name='password' placeholder="Введите пароль" />
             <button className='border px-10 py-2 rounded-md w-fit mx-auto '>Войти</button>
             {
                 error && <p className='text-red-400 mt-10'>Введены некорректные данные, проверьте правильность пароля или логина</p>
             }
-
-
         </form>
     )
 }

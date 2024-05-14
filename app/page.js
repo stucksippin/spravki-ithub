@@ -13,7 +13,7 @@ export default async function MainPage() {
   }
 
   const { role } = session.user;
-  console.log(role)
+
 
 
   if (role === 'admin') {
@@ -22,13 +22,9 @@ export default async function MainPage() {
     redirect('/user');
   }
   return (
-    <div>здарова<br />
+    <div>здарова ты как сюда попал<br />
       &#128075;
-
     </div>
-
-
-
   )
 
 }
