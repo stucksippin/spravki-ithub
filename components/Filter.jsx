@@ -33,7 +33,7 @@ export default function Filter({ references, dataSource, setDataSource }) {
         <Select className='mt-10 w-[150px]' onChange={handleFilterChange} defaultValue="all">
             <Option key="all" value="all">Все</Option>
             <Option key='requested' value={1}>Запрошена!</Option>
-            <Option key='inProgress' value={2}>В процессе</Option>
+            <Option key='inProgress' value={2}>Изготавливается</Option>
             <Option key='ready' value={3}>Готова!</Option>
             <Option key='done' value={4}>Выдана!</Option>
         </Select>

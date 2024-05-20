@@ -62,9 +62,9 @@ export default function TableReferences({ references }) {
       dataIndex: 'status',
       key: 'status',
       render: (text, record) => (
-        <Select className='w-[150px]' value={record.status} onChange={(value) => handleStatusChange(record.id, value)}>
+        <Select className='w-[165px]' value={record.status} onChange={(value) => handleStatusChange(record.id, value)}>
           <Option key='requested' value={1}>Запрошена!</Option>
-          <Option key='inProgress' value={2}>В процессе</Option>
+          <Option key='inProgress' value={2}>Изготавливается!</Option>
           <Option key='ready' value={3}>Готова!</Option>
           <Option key='done' value={4}>Выдана!</Option>
         </Select>
