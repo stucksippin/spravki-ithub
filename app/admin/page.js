@@ -5,7 +5,7 @@ import TableReferences from '@/components/TableReference';
 export default async function AdminPage() {
 const references = await getReferences()
     return (
-        <div className=''>
+        <div>
             <TableReferences references={references} />
         </div>
     )
