@@ -25,23 +25,11 @@ export default function TableRefUser({ references }) {
 
     const [filteredInfo, setFilteredInfo] = useState({});
     const [sortedInfo, setSortedInfo] = useState({});
+
     const handleChange = (pagination, filters, sorter) => {
         console.log('Various parameters', pagination, filters, sorter);
         setFilteredInfo(filters);
         setSortedInfo(sorter);
-    };
-    const clearFilters = () => {
-        setFilteredInfo({});
-    };
-    const clearAll = () => {
-        setFilteredInfo({});
-        setSortedInfo({});
-    };
-    const setAgeSort = () => {
-        setSortedInfo({
-            order: 'descend',
-            columnKey: 'age',
-        });
     };
 
     const columns = [
@@ -92,10 +80,13 @@ export default function TableRefUser({ references }) {
                     value: 'Выдана!',
                 },
             ],
-            filteredValue: filteredInfo.address || null,
-            onFilter: (value, record) => record.address.includes(value),
-            sorter: (a, b) => a.address.length - b.address.length,
-            sortOrder: sortedInfo.columnKey === 'address' ? sortedInfo.order : null,
+            filteredValue: filteredInfo.status || null,
+            onFilter: (value, record) => {
+                console.log(record.status);
+                return statusChanger(record.status).includes(value)
+            },
+            sorter: (a, b) => a.status.length - b.status.length,
+            sortOrder: sortedInfo.columnKey === 'status' ? sortedInfo.order : null,
             ellipsis: true,
             render: (status) => (statusChanger(status))
         },
@@ -103,8 +94,7 @@ export default function TableRefUser({ references }) {
 
     return (
         <>
-
-            <Table className='mt-10' columns={columns} dataSource={dataSource} />
+            <Table className='mt-10' columns={columns} dataSource={dataSource} onChange={handleChange} />
         </>
     );
 }
