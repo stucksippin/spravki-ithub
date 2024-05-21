@@ -1,20 +1,23 @@
 'use client'
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 
 export default function ReferencesForm() {
 
     const { register, handleSubmit } = useForm();
-
+    const [status, setStatus] = useState(" ")
 
     const onSubmit = async (data) => {
         try {
-            await fetch("/api/actions/create", {
+            const resp = await fetch("/api/actions/create", {
                 method: 'POST',
                 body: JSON.stringify(data)
-
-
             });
+
+            const result = await resp.json()
+            setStatus(result.result)
+            console.log(status)
             console.log('Сообщение отправлено')
         } catch (error) {
             console.error("Ошибка при отправке данных в телеграмме", error)
@@ -42,6 +45,8 @@ export default function ReferencesForm() {
                 <option value="Справка об обучении">Справка об обучении</option>
             </select>
             <input className="border p-2 hover:bg-orange-300 rounded-xl w-[50%] self-center mt-5" type="submit" />
+
+            {/* {status} */}
         </form>
     );
 }

@@ -5,6 +5,7 @@ import { getServerSession } from "next-auth"
 
 export async function POST(request) {
     const session = await getServerSession(NextAuthOptions)
+    const data = await request.json()
 
     const { initials } = await prisma.user.findFirst({
         where: {
@@ -12,8 +13,33 @@ export async function POST(request) {
         }
     })
 
+    const checkCount = await prisma.reference.count({
+        where: {
+            AND: [
+                {
+                    userId: session.user.id
+                },
+                {
+                    typeOfReference: data.typeOfReference
+                },
+                {
+                    NOT: {
+                        status: 4
+                    }
+                }
+            ]
+        }
+    })
 
-    const data = await request.json()
+
+    if (checkCount > 1) {
+        return Response.json({
+            result: "Вы заказали более 2 справок одного типа"
+        })
+    }
+
+
+
     const currentData = new Date
     const resp = await prisma.reference.create({
         data: {
