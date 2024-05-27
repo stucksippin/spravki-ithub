@@ -1,9 +1,10 @@
 import React from 'react'
-import getReferences from '../../../libs/getReferences';
+import getReferenceStatus from '../../../libs/getReferenceStatus';
 import HistorySpravki from '@/components/HistorySpravki';
 
 export default async function AdminPage() {
-const references = await getReferences()
+const references = await getReferenceStatus()
+
     return (
         <div className=''>
             <HistorySpravki references={references} />
