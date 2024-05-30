@@ -12,6 +12,8 @@ export default async function HeaderAdmin() {
                 <ul className='flex justify-between border p-4 rounded-xl items-center'>
 
                     <Link href={'/'}>Справки IThub | Админская панель</Link>
+                    
+                    <Link className='mr-10' href={'/admin/history'}>История</Link>
                     {
                         !!session && <Logout />
                     }
