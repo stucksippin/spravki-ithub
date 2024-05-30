@@ -13,28 +13,21 @@ export async function POST(request) {
         }
     })
 
+
     const checkCount = await prisma.reference.count({
         where: {
-            AND: [
-                {
-                    userId: session.user.id
-                },
-                {
-                    typeOfReference: data.typeOfReference
-                },
-                {
-                    NOT: {
-                        status: 4
-                    }
-                }
-            ]
+            NOT: {
+                status: 4
+            },
+            typeOfReference: data.typeOfReferences,
+            userId: session.user.id
         }
     })
 
 
     if (checkCount > 1) {
         return Response.json({
-            result: "Вы заказали более 2 справок одного типа"
+            result: "Вы заказали более 2 справок одного типа, проверьте личный кабинет "
         })
     }
 

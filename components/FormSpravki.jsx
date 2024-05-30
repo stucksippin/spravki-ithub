@@ -46,7 +46,8 @@ export default function ReferencesForm() {
             </select>
             <input className="border p-2 hover:bg-orange-300 rounded-xl w-[50%] self-center mt-5" type="submit" />
 
-            {/* {status} */}
+            <div className="text-red-500 justify-center flex w-fit self-center mt-10 "> {status}</div>
+
         </form>
     );
 }

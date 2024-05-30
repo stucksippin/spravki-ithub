@@ -21,6 +21,8 @@ export default async function MainPage() {
   } else {
     redirect('/user');
   }
+
+
   return (
     <div>здарова ты как сюда попал<br />
       &#128075;
