@@ -4,6 +4,7 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table, Select } from 'antd';
 import Highlighter from 'react-highlight-words';
 import Filter from './Filter';
+import {revalidatePath} from "next/cache";
 
 const { Option } = Select;
 
@@ -135,6 +136,7 @@ export default function TableReferences({ references }) {
         let temp = [...dataSource]
         temp[editIndex].status = newStatus
         setDataSource(temp)
+        revalidatePath('/admin/history')
       }
       console.log('Статус обновлен');
     } catch (error) {

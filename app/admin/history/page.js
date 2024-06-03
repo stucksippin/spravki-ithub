@@ -1,4 +1,3 @@
-import React from 'react'
 import getReferenceStatus from '../../../libs/getReferenceStatus';
 import HistorySpravki from '@/components/HistorySpravki';
 

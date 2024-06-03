@@ -3,6 +3,7 @@ import React, { useState, useRef } from 'react';
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table, Select } from 'antd';
 import Highlighter from 'react-highlight-words';
+import {useRouter} from "next/navigation";
 
 export default function History({references}){
 
@@ -10,6 +11,7 @@ export default function History({references}){
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const searchInput = useRef(null);
+    const router = useRouter()
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
         setSearchText(selectedKeys[0]);
