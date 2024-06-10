@@ -52,12 +52,12 @@ export default async function AccountPage() {
 
 
     return (
-        <div className='container bg-white rounded-xl pt-10'>
+        <div className='container w-[90%] mx-auto bg-white rounded-xl pt-10'>
 
             <>
                 <h2 className='font-bold text-center text-2xl'>Профиль</h2>
                 <div className='flex flex-col mt-5'>
-                    <span className='text-lg'>Пользователь: <span className='font-bold text-indigo-500'>{data.initials}</span></span>
+                    <span className='text-lg'>Пользователь: <span className='font-bold text-[#921CB0]'>{data.initials}</span></span>
                 </div>
 
 

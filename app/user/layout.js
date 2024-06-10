@@ -16,9 +16,9 @@ export default function UserLayout({ children }) {
 
     return (
 
-        <div>
-            <div><Header /></div>
-            <div>{children}</div>
+        <div className="flex">
+            <Header />
+            <div className="mx-auto my-auto">{children}</div>
 
         </div>
     );

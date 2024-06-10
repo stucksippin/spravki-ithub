@@ -7,18 +7,25 @@ import { NextAuthOptions } from '@/config'
 export default async function HeaderAdmin() {
     const session = await getServerSession(NextAuthOptions)
     return (
-        <div className='container mx-auto mt-10'>
-            <nav className=''>
-                <ul className='flex justify-between border p-4 rounded-xl items-center'>
+        <header className='bg-[#E6E8EA] w-[300px] font-semibold rounded-r-[50px] h-[100vh]'>
+            <nav className='w-[250px] mx-auto' >
+                <ul className='flex flex-col'>
+                    <li className='text-xl text-center mt-5'>   <Link href={'/'}>IThub</Link>  </li>
+                    <div className='mt-10'>
+                        <label className='text-[#838484]'>Действия</label>
+                        <li> <Link className='mr-10 ml-10 hover:text-[#921CB0]' href={'/admin/history'}>История справок</Link></li>
+                        <li className='mb-5'><Link className='mr-10 ml-10 hover:text-[#921CB0]' href={'/admin/'}>Студенты</Link></li>
 
-                    <Link href={'/'}>Справки IThub | Админская панель</Link>
-                    
-                    <Link className='mr-10' href={'/admin/history'}>История</Link>
-                    {
-                        !!session && <Logout />
-                    }
+                        <label className='text-[#838484]'>Другое</label>
+                        <li className='ml-10'>
+                            {
+                                !!session && <Logout />
+                            }
+                        </li>
+                    </div>
+
                 </ul>
             </nav>
-        </div>
+        </header>
     )
 }

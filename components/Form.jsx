@@ -32,9 +32,10 @@ export default function Form() {
 
     return (
         <form className='border p-5 w-1/3 flex flex-col mx-auto' onSubmit={submitHandler}>
-            <input className='border p-3 my-3 rounded-md' required type="text" name='email' placeholder="Введите email" />
-            <input className='border p-3 my-3 rounded-md' required type="password" name='password' placeholder="Введите пароль" />
-            <button className='border px-10 py-2 rounded-md w-fit mx-auto '>Войти</button>
+            <input className='p-3 my-3 rounded-md bg-[#F7F7F8]' required type="text" name='email' placeholder="Введите email" />
+            <input className=' p-3 my-3 rounded-md bg-[#F7F7F8]' required type="password" name='password' placeholder="Введите пароль" />
+            <span className='text-[#921CB0] cursor-pointer text-center'>Забыли пароль?</span>
+            <button className='border  py-2 rounded-md w-full mt-7 mx-auto bg-[#921CB0] text-white'>Войти</button>
             {
                 error && <p className='text-red-400 mt-10'>Введены некорректные данные, проверьте правильность пароля или логина</p>
             }
