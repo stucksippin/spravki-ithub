@@ -16,10 +16,10 @@ export default function AdminLayout({ children }) {
 
     return (
 
-        <div className="flex">
+        <div className="flex" style={{ height: 100 + 'vh' }}>
             <HeaderAdmin />
             <div className="mx-auto my-auto">{children}</div>
-
         </div>
+
     );
 }
