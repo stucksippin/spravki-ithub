@@ -1,12 +1,11 @@
 import React from 'react'
-import getReferences from '../../libs/getReferences';
-import TableReferences from '@/components/TableReference';
 
-export default async function AdminPage() {
-    const references = await getReferences()
+export default function page() {
     return (
-        <div>
-            <TableReferences references={references} />
+        <div class="mx-auto flex items-center p-5 text-4xl">
+            <p class='mx-auto my-auto'> Добро пожаловать в IThub spravki.
+                <img class='bg-black border-4 border-black mx-auto mt-2' src='/LOGO_ROSTOV.svg' alt='' />
+            </p>
         </div>
     )
 }
