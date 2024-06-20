@@ -52,7 +52,7 @@ export default async function AccountPage() {
 
 
     return (
-        <div className='container w-[90%] mx-auto bg-white rounded-xl pt-10'>
+        <div className='contaier w-[90%] mx-auto bg-white rounded-xl pt-10'>
 
             <>
                 <h2 className='font-bold text-center text-2xl'>Профиль</h2>

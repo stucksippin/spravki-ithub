@@ -27,7 +27,7 @@ export default function ReferencesForm() {
 
 
     return (
-        <form className="flex flex-col w-[500px]" onSubmit={handleSubmit(onSubmit)}>
+        <form className="flex flex-col w-[500px] reference__form" onSubmit={handleSubmit(onSubmit)}>
 
             <label>Группа</label>
             <select className="bg-[#F7F7F8] mb-5 py-3 px-5 rounded-xl" {...register("group")}>
