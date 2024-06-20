@@ -7,30 +7,24 @@ import { NextAuthOptions } from '@/config'
 export default async function HeaderAdmin() {
     const session = await getServerSession(NextAuthOptions)
     return (
-        <header class="hidden w-full md:h-auto h-full fixed md:static md:w-80 py-10 px-5 md:flex flex-col bg-[#E6E8EA] rounded-xl">
-            <nav>
-                <Link href={'/'}>
-                    <img class="w-[150px] lg: w-[200px]" src="/logo_C9mYhwm7.png" alt="" />
-                </Link>
-                <div class="buttons_group xm:text-[50px]my-auto flex max-w-[1800px] flex-col">
-                    <p class="mb-5 mt-7 text-slate-400 text-lg">Действия</p>
-                    <div class='flex flex-col gap-y-6'>
-                        <div>
-                            <Link class='hover:text-[#921CB0] text-xl md:text-xl lg:text-xl flex gap-x-[18px] ml-5' href={'/admin/main'}>Справки</Link>
-                        </div>
-                        <div>
-                            <Link class='hover:text-[#921CB0] text-xl md:text-xl lg:text-xl flex gap-x-[18px] ml-5' href={'/admin/history'}>История</Link>
-                        </div>
-                    </div>
-                    <p class="mb-5 mt-7 text-slate-400 text-lg">Другое</p>
-                    <div class='flex flex-col gap-y-6'>
-                        <div>
-                            <p class='flex gap-x-[18px] ml-5 text-xl md:text-xl lg:text-xl text-red-600'>{
+        <header className='bg-[#E6E8EA] w-[300px] font-semibold rounded-r-[50px] h-[100vh]'>
+            <nav className='w-[250px] mx-auto' >
+                <ul className='flex flex-col'>
+                    <li className='text-xl text-center mt-5'>   <Link href={'/'}>IThub</Link>  </li>
+                    <div className='mt-10'>
+                        <label className='text-[#838484]'>Действия</label>
+                        <li> <Link className='mr-10 ml-10 hover:text-[#921CB0]' href={'/admin/history'}>История справок</Link></li>
+                        <li className='mb-5'><Link className='mr-10 ml-10 hover:text-[#921CB0]' href={'/admin/'}>Студенты</Link></li>
+
+                        <label className='text-[#838484]'>Другое</label>
+                        <li className='ml-10'>
+                            {
                                 !!session && <Logout />
-                            }</p>
-                        </div>
+                            }
+                        </li>
                     </div>
-                </div>
+
+                </ul>
             </nav>
         </header>
     )
