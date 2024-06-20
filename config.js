@@ -1,5 +1,5 @@
 import CredentialsProvider from "next-auth/providers/credentials";
-import { compare } from "bcrypt";
+import { compare } from "bcryptjs";
 import { PrismaClient } from "@prisma/client";
 export const NextAuthOptions = {
     pages: {
