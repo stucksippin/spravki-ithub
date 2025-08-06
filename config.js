@@ -1,6 +1,10 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import { compare } from "bcryptjs";
-import { PrismaClient } from "@prisma/client";
+import prisma from "./libs/prisma";
+
+
+
+
 export const NextAuthOptions = {
     pages: {
         signIn: '/login'
@@ -8,46 +12,68 @@ export const NextAuthOptions = {
     session: {
         strategy: 'jwt'
     },
-    providers: [CredentialsProvider({
-        credentials: {
-            email: {},
-            password: {}
-        },
-        async authorize(credentials) {
-            const prisma = new PrismaClient()
-            const user = await prisma.user.findFirst({
-                where: {
-                    email: credentials.email
+    providers: [
+        CredentialsProvider({
+            name: 'Credentials',
+            credentials: {
+                email: { label: "Email", type: "email" },
+                password: { label: "Password", type: "password" }
+            },
+            async authorize(credentials) {
+                // Validate credentials exist
+                if (!credentials?.email || !credentials?.password) {
+                    return null;
                 }
-            })
-            const correctPassword = credentials.password === user.password
 
-            if (correctPassword) {
-                return {
-                    id: user.id,
-                    email: user.email,
-                    role: user.role
+                try {
+                    // Find user
+                    const user = await prisma.user.findUnique({
+                        where: {
+                            email: credentials.email
+                        }
+                    });
+
+                    // Check if user exists
+                    if (!user || !user.password) {
+                        return null;
+                    }
+
+                    // Compare hashed password
+                    const passwordValid = await compare(credentials.password, user.password);
+
+                    if (passwordValid) {
+                        return {
+                            id: user.id.toString(), // Ensure id is string
+                            email: user.email,
+                            role: user.role
+                        };
+                    }
+
+                    return null;
+                } catch (error) {
+                    console.error("Authentication error:", error);
+                    return null;
                 }
             }
-            return null
-        }
-    })],
+        })
+    ],
     callbacks: {
         async jwt({ token, user }) {
             if (user) {
-                token.role = user.role
-                token.id = user.id
+                token.role = user.role;
+                token.id = user.id;
             }
-            return token
+            return token;
         },
         async session({ token, session }) {
-
-            session.user = {
-                id: token.id,
-                email: token.email,
-                role: token.role
+            if (token) {
+                session.user = {
+                    id: token.id,
+                    email: token.email,
+                    role: token.role
+                };
             }
-            return session
+            return session;
         }
     }
-}
+};

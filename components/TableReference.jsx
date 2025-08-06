@@ -217,7 +217,7 @@ export default function TableReferences({ references }) {
   return (
     <>
       <Filter dataSource={dataSource} references={references} setDataSource={setDataSource} />
-      <Table className='mt-10' columns={columns} dataSource={dataSource} />
+      <Table className='mt-10' columns={columns} dataSource={dataSource.filter(item => item.status !== 4)} />
     </>
   );
 }

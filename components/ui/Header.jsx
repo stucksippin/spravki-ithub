@@ -15,7 +15,7 @@ export default async function Header() {
                         <label className='text-[#838484] text-[18px] font-light h__text'>Действия</label>
                         <div className='flex'>
                             <img className='ml-8 mr-2 w-[10%] h-[10%]' src="/account.png" alt="" />
-                            <li> <Link className='hover:text-[#921CB0] text-[20px] font-[500] span__text' href={'/user/account'}>Личный аккаунт</Link></li>
+                            <li> <Link className='hover:text-[#921CB0] text-[20px] font-[500] span__text' href={'/user'}>Личный аккаунт</Link></li>
                         </div>
                         <div className='flex'>
                             <img className='w-[10%] h-[10%] ml-8  mr-2' src="/reference.png" alt="" />
